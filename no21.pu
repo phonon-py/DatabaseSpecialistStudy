@@ -1,0 +1,51 @@
+@startuml
+!define RECTANGLE class
+
+package "1NF" {
+    RECTANGLE Customer {
+        +customer_id : INT
+        +name : VARCHAR
+        +phone : VARCHAR
+        +order_id : INT
+        +order_date : DATE
+        +product : VARCHAR
+    }
+}
+
+package "2NF" {
+    RECTANGLE Customer {
+        +customer_id : INT
+        +name : VARCHAR
+        +phone : VARCHAR
+    }
+
+    RECTANGLE Order {
+        +order_id : INT
+        +customer_id : INT
+        +order_date : DATE
+    }
+}
+
+package "3NF" {
+    RECTANGLE Customer {
+        +customer_id : INT
+        +name : VARCHAR
+        +phone : VARCHAR
+    }
+
+    RECTANGLE Order {
+        +order_id : INT
+        +customer_id : INT
+        +order_date : DATE
+    }
+
+    RECTANGLE Product {
+        +product_id : INT
+        +order_id : INT
+        +product : VARCHAR
+    }
+}
+
+Customer -- Order : places
+Order -- Product : contains
+@enduml
