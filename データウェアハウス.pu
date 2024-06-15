@@ -1,0 +1,24 @@
+@startuml
+package "基幹業務" {
+  rectangle システム {
+    database DB1
+    database DB2
+    database DB3
+  }
+}
+
+rectangle 集積 {
+  システム --> データウェアハウス
+}
+
+package "分析業務" {
+  database データウェアハウス {
+    note right: 時系列にデータを集積\n全社的なデータベース（一元管理）\n主に参照に用いる
+  }
+  rectangle 分析システム
+  データウェアハウス --> 分析システム
+  分析システム --> 利用者1
+  分析システム --> 利用者2
+}
+
+@enduml
