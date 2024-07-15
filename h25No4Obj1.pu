@@ -1,0 +1,14 @@
+@startuml
+entity "学期" as SemesterA {
+  + 学期ID
+}
+entity "学生" as StudentA {
+  + 学生ID
+}
+entity "授業科目" as SubjectA {
+  + 授業科目ID
+}
+
+SemesterA ||--o| StudentA : "1対多"
+StudentA ||..o| SubjectA : "多対多"
+@enduml
