@@ -1,0 +1,31 @@
+@startuml
+entity "品目" as Item {
+  品目コード
+  名称
+}
+
+entity "在庫品" as InventoryItem {
+  在庫数量
+}
+
+entity "倉庫" as Warehouse {
+  倉庫コード
+  住所
+}
+
+entity "在庫取引" as InventoryTransaction {
+  取引番号
+  取引日
+  計上日
+  移動数量
+}
+
+Item "1" -- "*" InventoryItem 
+InventoryItem "*" -- "1" Warehouse
+InventoryItem "1" -- "*" InventoryTransaction : 移動元
+InventoryItem "1" -- "*" InventoryTransaction : 移動先
+
+note right of InventoryTransaction
+  制約：同一品目間の移動だけを許す
+end note
+@enduml
